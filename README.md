@@ -1,0 +1,2 @@
+# basicCalculator
+Simple swift calculator
