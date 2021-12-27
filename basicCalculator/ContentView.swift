@@ -48,7 +48,7 @@ enum Operation {
 struct ContentView: View {
     
     @State var value = "0"
-    @State var runningNumber = 0
+    @State var runningNumber :Double = 0
     @State var currentOperation: Operation = .none
     
     let buttons: [[CalcButton]] = [
@@ -104,23 +104,23 @@ struct ContentView: View {
         case .add, .subtract, .multiply, .divide, .equal:
             if button == .add {
                 self.currentOperation = .add
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .subtract {
                 self.currentOperation = .subtract
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .multiply {
                 self.currentOperation = .multiply
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .divide {
                 self.currentOperation = .divide
-                self.runningNumber = Int(self.value) ?? 0
+                self.runningNumber = Double(self.value) ?? 0
             }
             else if button == .equal {
-                let runningValue = self.runningNumber
-                let currentValue = Int(self.value) ?? 0
+                let runningValue = Double(self.runningNumber)
+                let currentValue = Double(self.value) ?? 0
                 switch self.currentOperation {
                 case .add:
                     self.value = "\(runningValue + currentValue)"
@@ -131,7 +131,8 @@ struct ContentView: View {
                 case .divide:
                     self.value = "\(runningValue / currentValue)"
                 case .none:
-                    break
+                    self.value = "none"
+                    
                 }
             }
             
@@ -140,7 +141,7 @@ struct ContentView: View {
             }
         case .clear:
             self.value = "0"
-        case .decimal, .negative, .percent:
+        case .negative, .percent:
             break
         default:
             let number = button.rawValue
