@@ -141,8 +141,12 @@ struct ContentView: View {
             }
         case .clear:
             self.value = "0"
-        case .negative, .percent:
+        case .percent:
             break
+        case .negative:
+            let doubleValue = Double(self.value) ?? 0
+            let negativeValue = doubleValue * -1.0
+            self.value = String(negativeValue)
         default:
             let number = button.rawValue
             if self.value == "0" {
