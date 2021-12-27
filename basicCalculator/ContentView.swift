@@ -131,7 +131,7 @@ struct ContentView: View {
                 case .divide:
                     self.value = "\(runningValue / currentValue)"
                 case .none:
-                    self.value = "none"
+                    break
                     
                 }
             }
@@ -142,7 +142,7 @@ struct ContentView: View {
         case .clear:
             self.value = "0"
         case .percent:
-            break
+            self.value = String((runningNumber / 100.0) * Double(self.value)!)
         case .negative:
             let doubleValue = Double(self.value) ?? 0
             let negativeValue = doubleValue * -1.0
